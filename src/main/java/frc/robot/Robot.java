@@ -7,13 +7,13 @@
 
 package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.lib.controllers.Xbox;
 import frc.lib.util.CrashTracker;
 import frc.robot.loops.Looper;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.SubsystemManager;
 import frc.robot.subsystems.Superstructure;
-
 
 
 public class Robot extends TimedRobot {
@@ -149,6 +149,7 @@ public class Robot extends TimedRobot {
    * This function is called periodically during operator control.
    */
   private double localShooterPower = 0.0;
+  private Object currentButton; 
   @Override
   public void teleopPeriodic() {
     try {
@@ -160,10 +161,21 @@ public class Robot extends TimedRobot {
       CrashTracker.logThrowableCrash(t);
       throw t;
     }
-    if(Xbox.rightBumper.wasActivated()){
-        localShooterPower += 0.1;
-    } else if (Xbox.leftBumper.wasActivated()){
+    /*
+    if(Xbox.dpadDown.wasReleased() && Xbox.dpadUp.wasReleased()){
+      if (Xbox.dpadDown.equals(currentButton)){
         localShooterPower -= 0.1;
+      } else {
+        localShooterPower += 0.1;
+      }
+    }
+    */
+    if(Xbox.dpadUp.wasReleased()){
+        localShooterPower += 0.1;
+        currentButton = Xbox.dpadUp;
+    } else if (Xbox.dpadDown.wasReleased()){
+        localShooterPower -= 0.1;
+        currentButton = Xbox.dpadUp;
     }
     mShooter.shoot(localShooterPower);
   }

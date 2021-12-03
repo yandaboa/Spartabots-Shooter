@@ -23,6 +23,16 @@ import frc.robot.subsystems.requests.RequestList;
  * Add your docs here.
  */
 public class Superstructure extends Subsystem {
+    
+    @Override
+    public String getName(){
+        return "Superstructure";
+    }
+
+    @Override
+    public void updateTelemetry(){
+        
+    }
 
     private static Superstructure mInstance = null;
 
@@ -236,12 +246,5 @@ public class Superstructure extends Subsystem {
     public boolean checkSystem() {
         return false;
     }
-
-    @Override
-    public void outputTelemetry() {
-
-    }
-
-
 
 }

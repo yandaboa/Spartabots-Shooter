@@ -8,7 +8,7 @@
 package frc.robot.subsystems;
 
 import frc.robot.loops.ILooper;
-
+import java.util.HashMap;
 /**
  * Add your docs here.
  */
@@ -28,7 +28,15 @@ public abstract class Subsystem {
 
     public abstract boolean checkSystem();
 
-    public abstract void outputTelemetry();
+    public abstract void updateTelemetry();
+    
+    public HashMap<String, Object> outputTelemetry = new HashMap<>();
+
+    public final void outputTelemetry() {
+        Dashboard.parse(outputTelemetry, getName());
+    }
+
+    public abstract String getName();
 
     public boolean hasEmergency = false;
 }

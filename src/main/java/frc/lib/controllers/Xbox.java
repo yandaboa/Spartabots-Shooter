@@ -15,9 +15,26 @@ import frc.lib.util.*;
  * Add your docs here.
  */
 public class Xbox extends XboxController {
-    public static Button aButton, bButton, xButton, yButton, startButton, backButton,
-        leftBumper, rightBumper, leftJoystickButton, rightJoystickButton, leftTrigger,
-        rightTrigger, dpadUp, dpadRight, dpadLeft, dpadDown;
+    public Button aButton, bButton, xButton, yButton, startButton, backButton,
+        leftBumper;
+
+    public Button rightBumper;
+
+    public Button leftJoystickButton;
+
+    public Button rightJoystickButton;
+
+    public Button leftTrigger;
+
+    public Button rightTrigger;
+
+    public static Button dpadUp;
+
+    public Button dpadRight;
+
+    public Button dpadLeft;
+
+    public static Button dpadDown;
 
     private final int A_BUTTON = 1;
     private final int B_BUTTON = 2;

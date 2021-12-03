@@ -1,6 +1,6 @@
 package frc.robot.subsystems;
 import java.util.ArrayList;
-import frc.lib.controllers.*;
+import frc.lib.controllers.Xbox;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.InvertType;
@@ -23,6 +23,7 @@ import frc.robot.Ports;
 import frc.robot.loops.ILooper;
 import frc.robot.loops.Loop;
 import frc.robot.subsystems.requests.Request;
+import edu.wpi.first.wpilibj.shuffleboard.*;
 
 
 public class Shooter extends Subsystem{
@@ -52,10 +53,16 @@ public class Shooter extends Subsystem{
         configureShooterMotor(mShooterMotor, InvertType.None);
 
     }
+
+    private double localShooterPower;
     // we changed the Xbox enums to static because we don't know any better.
     public void shoot(double localShooterPower) {
-
+        this.localShooterPower = localShooterPower;
         mShooterMotor.set(ControlMode.PercentOutput, localShooterPower);
+    }
+
+    public String getName(){
+        return "Shooter";
     }
     
     public void writeToLog() {
@@ -89,8 +96,8 @@ public class Shooter extends Subsystem{
     }
 
     @Override
-    public void outputTelemetry(){
-
+    public void updateTelemetry(){
+        outputTelemetry.put("Current Power Percentage", localShooterPower*100);
     }
 
     public boolean hasEmergency = false;
