@@ -149,7 +149,7 @@ public class Robot extends TimedRobot {
    * This function is called periodically during operator control.
    */
   private double localShooterPower = 0.0;
-  private Object currentButton; 
+
   @Override
   public void teleopPeriodic() {
     try {
@@ -171,11 +171,13 @@ public class Robot extends TimedRobot {
     }
     */
     if(Xbox.dpadUp.wasReleased()){
-        localShooterPower += 0.1;
-        currentButton = Xbox.dpadUp;
+      localShooterPower += 0.1;
     } else if (Xbox.dpadDown.wasReleased()){
-        localShooterPower -= 0.1;
-        currentButton = Xbox.dpadUp;
+      localShooterPower -= 0.1;
+    } else if (Xbox.dpadRight.wasReleased()){
+      localShooterPower -= 0.05;
+    } else if (Xbox.dpadLeft.wasReleased()){
+      localShooterPower += 0.05;
     }
     mShooter.shoot(localShooterPower);
   }

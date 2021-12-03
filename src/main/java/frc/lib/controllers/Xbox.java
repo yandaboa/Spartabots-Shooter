@@ -30,9 +30,9 @@ public class Xbox extends XboxController {
 
     public static Button dpadUp;
 
-    public Button dpadRight;
+    public static Button dpadRight;
 
-    public Button dpadLeft;
+    public static Button dpadLeft;
 
     public static Button dpadDown;
 
