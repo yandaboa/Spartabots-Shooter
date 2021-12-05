@@ -87,7 +87,7 @@ public class Shooter extends Subsystem{
     
     @Override
     public void stop(){
-
+        mShooterMotor.set(ControlMode.PercentOutput, 0.0);
     }
 
     @Override
