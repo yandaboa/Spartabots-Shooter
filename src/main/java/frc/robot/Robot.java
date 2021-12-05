@@ -170,15 +170,20 @@ public class Robot extends TimedRobot {
       }
     }
     */
-    if(Xbox.dpadUp.wasReleased()){
+    if(mDriveController.dpadUp.wasReleased()){
       localShooterPower += 0.1;
-    } else if (Xbox.dpadDown.wasReleased()){
+    } else if (mDriveController.dpadDown.wasReleased()){
       localShooterPower -= 0.1;
-    } else if (Xbox.dpadRight.wasReleased()){
+    } else if (mDriveController.dpadRight.wasReleased()){
       localShooterPower -= 0.05;
-    } else if (Xbox.dpadLeft.wasReleased()){
+    } else if (mDriveController.dpadLeft.wasReleased()){
       localShooterPower += 0.05;
+    } else if (mDriveController.xButton.wasReleased()){
+      localShooterPower = 0.0;
+    } else if(mDriveController.yButton.longPressed()){
+      localShooterPower *= -1;
     }
+    mShooter.updateTelemetry();
     mShooter.shoot(localShooterPower);
   }
 

@@ -28,13 +28,13 @@ public class Xbox extends XboxController {
 
     public Button rightTrigger;
 
-    public static Button dpadUp;
+    public Button dpadUp;
 
-    public static Button dpadRight;
+    public Button dpadRight;
 
-    public static Button dpadLeft;
+    public Button dpadLeft;
 
-    public static Button dpadDown;
+    public Button dpadDown;
 
     private final int A_BUTTON = 1;
     private final int B_BUTTON = 2;

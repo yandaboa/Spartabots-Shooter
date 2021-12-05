@@ -98,6 +98,7 @@ public class Shooter extends Subsystem{
     @Override
     public void updateTelemetry(){
         outputTelemetry.put("Current Power Percentage", localShooterPower*100);
+        outputTelemetry();
     }
 
     public boolean hasEmergency = false;
