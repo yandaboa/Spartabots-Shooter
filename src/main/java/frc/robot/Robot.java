@@ -183,8 +183,9 @@ public class Robot extends TimedRobot {
     } else if(mDriveController.yButton.longPressed()){
       localShooterPower *= -1;
     }
-    mShooter.updateTelemetry();
     mShooter.shoot(localShooterPower);
+    mShooter.updateTelemetry();
+    
   }
 
   @Override
