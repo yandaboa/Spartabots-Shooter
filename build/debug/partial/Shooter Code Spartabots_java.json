@@ -1,0 +1,13 @@
+[
+  {
+    "name": "Shooter Code Spartabots (in project Shooter Code Spartabots)",
+    "file": "/Users/Yanda/work/Shooter Code Spartabots/build/libs/Shooter Code Spartabots.jar",
+    "extensions": [
+      "/Users/Yanda/work/Shooter Code Spartabots/build/tmp/expandedArchives/halsim_gui-2021.1.2-osxx86-64.zip_cebe157c0370b0beb19e3bf47444ccd5/osx/x86-64/shared/libhalsim_gui.dylib",
+      "/Users/Yanda/work/Shooter Code Spartabots/build/tmp/expandedArchives/halsim_ds_socket-2021.1.2-osxx86-64.zip_74f940fde2ab76e055beee74e438787d/osx/x86-64/shared/libhalsim_ds_socket.dylib"
+    ],
+    "env": {},
+    "librarydir": "/Users/Yanda/work/Shooter Code Spartabots/build/tmp/jniExtractDir",
+    "mainclass": "frc.robot.Main"
+  }
+]

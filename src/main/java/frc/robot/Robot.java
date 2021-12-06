@@ -170,30 +170,21 @@ public class Robot extends TimedRobot {
       }
     }
     */
-    if(mDriveController.dpadUp.wasReleased()){
+    if(mDriveController.dpadUp.wasReleased() && localShooterPower <= 0.9){
       localShooterPower += 0.1;
-      System.out.println(localShooterPower + "- current");
-    } else if (mDriveController.dpadDown.wasReleased()){
+    } else if (mDriveController.dpadDown.wasReleased() && localShooterPower >= -0.9){
       localShooterPower -= 0.1;
-      System.out.println(localShooterPower + "- current");
-    } else if (mDriveController.dpadRight.wasReleased()){
+    } else if (mDriveController.dpadRight.wasReleased() && localShooterPower >= -0.95){
       localShooterPower -= 0.05;
-      System.out.println(localShooterPower + "- current");
-    } else if (mDriveController.dpadLeft.wasReleased()){
+    } else if (mDriveController.dpadLeft.wasReleased() && localShooterPower <= 0.95){
       localShooterPower += 0.05;
-      System.out.println(localShooterPower + "- current");
     } else if (mDriveController.xButton.wasReleased()){
       localShooterPower = 0.0;
-      System.out.println(localShooterPower + "- current");
-    } else if(mDriveController.yButton.longPressed()){
+    } else if(mDriveController.yButton.longPressed() && localShooterPower < 1){
       localShooterPower *= -1;
-      System.out.println(localShooterPower + "- current");
-    } else if(mDriveController.bButton.wasReleased()){
-      mShooter.stop();
-      return;
     }
     mShooter.shoot(localShooterPower);
-    mShooter.updateTelemetry();
+    //mShooter.updateTelemetry();
   }
 
   @Override
