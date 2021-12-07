@@ -181,28 +181,36 @@ public class Robot extends TimedRobot {
     }
     switch(controlMode){
       case ("dPad"):
-        if(mDriveController.dpadUp.wasReleased() && localShooterPower <= 0.9){
-          localShooterPower += 0.1;
-        } else if (mDriveController.dpadDown.wasReleased() && localShooterPower >= -0.9){
-          localShooterPower -= 0.1;
-        } else if (mDriveController.dpadRight.wasReleased() && localShooterPower >= -0.95){
-          localShooterPower -= 0.05;
-        } else if (mDriveController.dpadLeft.wasReleased() && localShooterPower <= 0.95){
-          localShooterPower += 0.05;
-        } else if (mDriveController.xButton.wasReleased()){
-          localShooterPower = 0.0;
-        } else if(mDriveController.yButton.longPressed() && localShooterPower < 1){
-          localShooterPower *= -1;
-        }
+        dPadControl();
         break;
       case ("Axis"):
-        localShooterPower = mDriveController.getTriggerAxis(Hand.kLeft);
-    
-
+        localShooterPower = mDriveController.getTriggerAxis(Hand.kRight);
     }
     // code for trigger controlled power w/ out different modes. Trigger takes precedent and over rules dPad completely.
+    /*
+    dPadControl();
+    if(mDriveController.rightTrigger.isBeingPressed()){
+      localShooterPower = mDriveController.getTriggerAxis(Hand.kRight);
+    }
+    */
     mShooter.shoot(localShooterPower);
     //mShooter.updateTelemetry();
+  }
+
+  private void dPadControl(){
+    if(mDriveController.dpadUp.wasReleased() && localShooterPower <= 0.9){
+      localShooterPower += 0.1;
+    } else if (mDriveController.dpadDown.wasReleased() && localShooterPower >= -0.9){
+      localShooterPower -= 0.1;
+    } else if (mDriveController.dpadRight.wasReleased() && localShooterPower >= -0.95){
+      localShooterPower -= 0.05;
+    } else if (mDriveController.dpadLeft.wasReleased() && localShooterPower <= 0.95){
+      localShooterPower += 0.05;
+    } else if (mDriveController.xButton.wasReleased()){
+      localShooterPower = 0.0;
+    } else if(mDriveController.yButton.longPressed() && localShooterPower < 1){
+      localShooterPower *= -1;
+    }
   }
 
   @Override
