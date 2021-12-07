@@ -7,6 +7,7 @@
 
 package frc.robot;
 import edu.wpi.first.wpilibj.TimedRobot;
+import edu.wpi.first.wpilibj.GenericHID.Hand;
 import edu.wpi.first.wpilibj.XboxController.Button;
 import frc.lib.controllers.Xbox;
 import frc.lib.util.CrashTracker;
@@ -14,6 +15,7 @@ import frc.robot.loops.Looper;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.SubsystemManager;
 import frc.robot.subsystems.Superstructure;
+import frc.lib.*;
 
 
 public class Robot extends TimedRobot {
@@ -149,6 +151,7 @@ public class Robot extends TimedRobot {
    * This function is called periodically during operator control.
    */
   private double localShooterPower = 0.0;
+  private String controlMode = "dPad";
 
   @Override
   public void teleopPeriodic() {
@@ -170,19 +173,34 @@ public class Robot extends TimedRobot {
       }
     }
     */
-    if(mDriveController.dpadUp.wasReleased() && localShooterPower <= 0.9){
-      localShooterPower += 0.1;
-    } else if (mDriveController.dpadDown.wasReleased() && localShooterPower >= -0.9){
-      localShooterPower -= 0.1;
-    } else if (mDriveController.dpadRight.wasReleased() && localShooterPower >= -0.95){
-      localShooterPower -= 0.05;
-    } else if (mDriveController.dpadLeft.wasReleased() && localShooterPower <= 0.95){
-      localShooterPower += 0.05;
-    } else if (mDriveController.xButton.wasReleased()){
-      localShooterPower = 0.0;
-    } else if(mDriveController.yButton.longPressed() && localShooterPower < 1){
-      localShooterPower *= -1;
+    //two different control types, one using trigger, other with increments on dPad.
+    if(mDriveController.aButton.wasReleased()){
+      controlMode = "dPad";
+    } else if(mDriveController.bButton.wasReleased()){
+      controlMode = "Axis";
     }
+    switch(controlMode){
+      case ("dPad"):
+        if(mDriveController.dpadUp.wasReleased() && localShooterPower <= 0.9){
+          localShooterPower += 0.1;
+        } else if (mDriveController.dpadDown.wasReleased() && localShooterPower >= -0.9){
+          localShooterPower -= 0.1;
+        } else if (mDriveController.dpadRight.wasReleased() && localShooterPower >= -0.95){
+          localShooterPower -= 0.05;
+        } else if (mDriveController.dpadLeft.wasReleased() && localShooterPower <= 0.95){
+          localShooterPower += 0.05;
+        } else if (mDriveController.xButton.wasReleased()){
+          localShooterPower = 0.0;
+        } else if(mDriveController.yButton.longPressed() && localShooterPower < 1){
+          localShooterPower *= -1;
+        }
+        break;
+      case ("Axis"):
+        localShooterPower = mDriveController.getTriggerAxis(Hand.kLeft);
+    
+
+    }
+    // code for trigger controlled power w/ out different modes. Trigger takes precedent and over rules dPad completely.
     mShooter.shoot(localShooterPower);
     //mShooter.updateTelemetry();
   }
