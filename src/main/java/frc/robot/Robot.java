@@ -176,8 +176,10 @@ public class Robot extends TimedRobot {
     //two different control types, one using trigger, other with increments on dPad.
     if(mDriveController.aButton.wasReleased()){
       controlMode = "dPad";
+      System.out.println(controlMode);
     } else if(mDriveController.bButton.wasReleased()){
       controlMode = "Axis";
+      System.out.println(controlMode);
     }
     switch(controlMode){
       case ("dPad"):
