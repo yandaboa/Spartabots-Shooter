@@ -15,7 +15,6 @@ import frc.robot.loops.Looper;
 import frc.robot.subsystems.Shooter;
 import frc.robot.subsystems.SubsystemManager;
 import frc.robot.subsystems.Superstructure;
-import frc.lib.*;
 
 
 public class Robot extends TimedRobot {
