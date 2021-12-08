@@ -200,16 +200,22 @@ public class Robot extends TimedRobot {
   private void dPadControl(){
     if(mDriveController.dpadUp.wasReleased() && localShooterPower <= 0.9){
       localShooterPower += 0.1;
+      System.out.println(localShooterPower);
     } else if (mDriveController.dpadDown.wasReleased() && localShooterPower >= -0.9){
       localShooterPower -= 0.1;
+      System.out.println(localShooterPower);
     } else if (mDriveController.dpadRight.wasReleased() && localShooterPower >= -0.95){
       localShooterPower -= 0.05;
+      System.out.println(localShooterPower);
     } else if (mDriveController.dpadLeft.wasReleased() && localShooterPower <= 0.95){
       localShooterPower += 0.05;
+      System.out.println(localShooterPower);
     } else if (mDriveController.xButton.wasReleased()){
       localShooterPower = 0.0;
+      System.out.println(localShooterPower);
     } else if(mDriveController.yButton.longPressed() && localShooterPower < 1){
       localShooterPower *= -1;
+      System.out.println(localShooterPower);
     }
   }
 
