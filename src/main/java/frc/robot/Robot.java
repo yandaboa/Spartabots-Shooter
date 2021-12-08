@@ -171,7 +171,7 @@ public class Robot extends TimedRobot {
         localShooterPower += 0.1;
       }
     }
-    */
+    
     //two different control types, one using trigger, other with increments on dPad.
     if(mDriveController.aButton.wasReleased()){
       controlMode = "dPad";
@@ -180,6 +180,7 @@ public class Robot extends TimedRobot {
       controlMode = "Axis";
       System.out.println(controlMode);
     }
+    
     switch(controlMode){
       case ("dPad"):
         dPadControl();
@@ -188,21 +189,24 @@ public class Robot extends TimedRobot {
         localShooterPower = mDriveController.getTriggerAxis(Hand.kRight);
     }
     // code for trigger controlled power w/ out different modes. Trigger takes precedent and over rules dPad completely.
-    /*
     dPadControl();
     if(mDriveController.rightTrigger.isBeingPressed()){
       localShooterPower = mDriveController.getTriggerAxis(Hand.kRight);
     }
     */
+    if(mDriveController.aButton.wasReleased()){
+      localShooterPower = -1;
+    }
+    dPadControl();
     mShooter.shoot(localShooterPower);
     //mShooter.updateTelemetry();
   }
 
   private void dPadControl(){
-    if(mDriveController.dpadUp.wasReleased() && localShooterPower <= 0.9){
+    if(mDriveController.dpadDown.wasReleased() && localShooterPower <= 0.9){
       localShooterPower += 0.1;
       System.out.println(localShooterPower);
-    } else if (mDriveController.dpadDown.wasReleased() && localShooterPower >= -0.9){
+    } else if (mDriveController.dpadUp.wasReleased() && localShooterPower >= -0.9){
       localShooterPower -= 0.1;
       System.out.println(localShooterPower);
     } else if (mDriveController.dpadRight.wasReleased() && localShooterPower >= -0.95){
